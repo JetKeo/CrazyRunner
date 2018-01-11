@@ -13,15 +13,23 @@ public class CrazyRunner extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		img = new Texture("grass.png");
 	}
 
+        public int generate(){
+            return (int)Math.ceil(Math.random() * 3);
+        }
+        
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+                
+            
+		Gdx.gl.glClearColor(0, 0, 0, 0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+                
 		batch.begin();
-		batch.draw(img, 0, 0);
+                
+		//batch.draw(img, 0, 0, 1200, 60);
 		batch.end();
 	}
 	

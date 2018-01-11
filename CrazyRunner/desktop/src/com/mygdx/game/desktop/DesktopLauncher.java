@@ -7,10 +7,14 @@ import com.mygdx.game.CrazyRunner;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
-            Settings settings = new Settings();
-            settings.maxHeight = 1600;
-            settings.maxWidth = 900;
+//            Settings settings = new Settings();
+//            settings.maxHeight = 2000;
+//            settings.maxWidth = 2000;
+            
+            
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new CrazyRunner(), config);
+		config.width = 1200;
+                config.height = 900;
+                new LwjglApplication(new CrazyRunner(), config);
 	}
 }
