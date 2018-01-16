@@ -17,7 +17,6 @@ public abstract class Terrain {
     private int xsize;
     private int ysize;
     private int y;
-    private SpriteBatch batch;
 
     public Terrain(int xsize, int ysize){
         this.xsize = xsize;

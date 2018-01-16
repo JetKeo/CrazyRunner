@@ -10,14 +10,14 @@ import com.badlogic.gdx.graphics.Texture;
  *
  * @author peraa0837
  */
-public class Grass extends Terrain {
+public class Ashphalt extends Terrain{
     private Texture img;
     //used to identify the grass from other terrains
-    private int id = 1;
+    private int id = 2;
     
-    public Grass(int width, int height){
+    public Ashphalt(int width, int height){
         super(width, height);
-        img = new Texture("grass.png");
+        img = new Texture("ashphalt.png");
     }
     
     public Texture getImg(){
