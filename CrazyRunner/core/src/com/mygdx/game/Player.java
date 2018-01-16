@@ -9,6 +9,6 @@ package com.mygdx.game;
  *
  * @author sheza
  */
-public class Collisions {
+public class Player {
     
 }
