@@ -27,18 +27,23 @@ public class CrazyRunner extends ApplicationAdapter {
         generate();
     }
 
-    public int[] generate() {
+    public void generate() {
         for(int i = 0; i < 15; i++){
             this.spot[i] = (int) Math.ceil(Math.random() * 3);
         }
-        return spot;
+       
     }
 
     @Override
     public void render() {
-
+        //clear screen to prep for drawing
+        Gdx.gl20.glClearColor(0, 0, 0, 1);
+        Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        
         batch.begin();
+        //counts 15 spots and places terrain in each spot
         for(int i = 0; i < 15; i++){
+            //1, 2, 3 determine which terrain is rendered, then increase y accordingly for next row
             if(spot[i] == 1){
                 batch.draw(grass.getImg(), 0, this.y, grass.getXSize(), grass.getYSize());
                 this.y = this.y + 60;
@@ -52,6 +57,8 @@ public class CrazyRunner extends ApplicationAdapter {
         
         
         }
+        //reset y back to 0
+        this.y = 0;
         batch.end();
     }
 
@@ -59,5 +66,7 @@ public class CrazyRunner extends ApplicationAdapter {
     public void dispose() {
         batch.dispose();
         grass.dispose();
+        ashphalt.dispose();
+        water.dispose();
     }
 }

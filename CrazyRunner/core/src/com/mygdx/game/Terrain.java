@@ -22,11 +22,7 @@ public abstract class Terrain {
         this.xsize = xsize;
         this.ysize = ysize;
        }
-    
-    public void nextRow(){
-        this.y = this.y + 60;
-    }
-    
+   
     public int getXSize(){
         return this.xsize;
     }
