@@ -29,20 +29,25 @@ public class CrazyRunner extends ApplicationAdapter {
         generate();
     }
 
+    public int generateRange(int min, int max) {
+        int range = (max - min) + 1;
+        return (int) (Math.random() * range) + min;
+    }
+
     public void generate() {
         this.spot[0] = 1;
         this.spot[14] = 1;
         for (int i = 1; i < 14; i++) {
-            if (grassCount != 1) {
+            if (grassCount != 3) {
                 this.spot[i] = (int) Math.ceil(Math.random() * 3);
-                if(spot[i] == 1){
-                grassCount++;
+                if (spot[i] == 1) {
+                    grassCount++;
                 }
-            }else{
-                this.spot[i] = (int) Math.random() * 3 + 2;
+            } else {
+                this.spot[i] = generateRange(2, 3);
+                System.out.println(this.spot[i]);
             }
         }
-
     }
 
     @Override
