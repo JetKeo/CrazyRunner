@@ -104,6 +104,10 @@ public class MainGame implements Screen {
         this.y = 0;
     }
 
+    public int[] getSpot(){
+        return this.spot;
+    }
+    
     @Override
     public void resize(int i, int i1) {
     }
