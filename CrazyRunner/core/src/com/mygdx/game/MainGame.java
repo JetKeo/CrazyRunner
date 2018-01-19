@@ -29,6 +29,11 @@ public class MainGame implements Screen {
     private int grassCount;
     //spritebatch
     private SpriteBatch batch;
+    
+    private int getPlayerPositionX;
+    private int getPlayerPositionY;
+    
+    private Player personImg;
 
     public MainGame(CrazyRunner game) {
         //initialize all variables
@@ -99,6 +104,14 @@ public class MainGame implements Screen {
 
 
         }
+        
+	
+	
+        
+        // draw player
+        
+        
+        
         batch.end();
         //reset y back to 0
         this.y = 0;
