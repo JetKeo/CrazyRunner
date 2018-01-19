@@ -5,8 +5,10 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
@@ -19,6 +21,9 @@ public class MainGame implements Screen {
     private CrazyRunner gameManager;
     //array to determine terrain type
     private int[] spot;
+    //player
+    private Player player;
+    private Texture personImg;
     //terrain variables
     private Grass grass;
     private Ashphalt ashphalt;
@@ -33,19 +38,22 @@ public class MainGame implements Screen {
     public MainGame(CrazyRunner game) {
         //initialize all variables
         this.gameManager = game;
-
+        player = new Player();
         spot = new int[15];
         grassCount = 0;
         this.grass = new Grass(1200, 60);
         this.ashphalt = new Ashphalt(1200, 60);
         this.water = new Water(1200, 60);
         generate();
+        personImg = new Texture("person.png");
+        
 
         this.batch = game.getBatch();
     }
 
     /*
-     * Generates a number between 1 and 3
+     * Generates a number between 1 and 3 into each of an array's position besides the first
+     * and last
      */
     public void generate() {
         this.spot[0] = 1;
@@ -99,6 +107,35 @@ public class MainGame implements Screen {
 
 
         }
+       // if player moves up
+        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+            player.setY(player.getY() + 15);
+        }
+        // if player moves down
+        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+            player.setY(player.getY() - 15);
+        }
+        // if player moves right
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+            player.setX(player.getX() + 15);
+        }
+        // if player moves left
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT))  {
+            player.setX(player.getX() - 15);
+        }
+        
+       
+		
+		batch.draw(personImg, player.getX(), player.getY(), 55, 55);
+		
+        
+        
+        //regenerates terrain to continue game
+        if(player.getY() > 840){
+            generate();
+            player.resetY();
+        }
+        
         batch.end();
         //reset y back to 0
         this.y = 0;

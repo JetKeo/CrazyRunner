@@ -34,6 +34,8 @@ public class Player {
     public void create(){
         batch = new SpriteBatch();
         personImg = new Texture("person.png");
+        y = 0;
+        x = 600;
     }
     
     /**
@@ -62,15 +64,28 @@ public class Player {
         Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(personImg, 0, 0, x, y);
+		batch.draw(personImg, x, y, 55, 55);
 		batch.end();
         
     }
-    public int getPlayerPositionX(){
+    public int getX(){
         return x;
     }
-    public int getPlayerPositionY(){
+    public int getY(){
         return y;
     }
+    
+    public void resetY(){
+        this.y = 0;
+    }
+    
+    public void setX(int x){
+        this.x = x;
+    }
+    
+    public void setY(int y){
+        this.y = y;
+    }
+    
     
 }
