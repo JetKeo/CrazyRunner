@@ -12,8 +12,10 @@ public class CrazyRunner extends Game {
 
     private SpriteBatch batch;
     private boolean mainScreen;
+    private boolean htpScreen;
     private boolean howToPlay;
     private Sound music;
+    
 
     @Override
     public void create() {
@@ -23,9 +25,10 @@ public class CrazyRunner extends Game {
         // game screens
         HomeScreen gameMenu = new HomeScreen(this);
         MainGame gameScreen = new MainGame(this);
+        HowToPlay helpScreen = new HowToPlay(this);
         
         // set to main screen when game starts
-        // setMainScreen();
+        howToPlay = false;
         setGameScreen();
 
         // mouse input
@@ -42,7 +45,7 @@ public class CrazyRunner extends Game {
             // how to play button
             if (mouseX >= 15 && mouseX <= 215) {
                 if (mouseX >= 15 && mouseX <= 76) {
-                    // need to add a how to play screen
+                    setHtpScreen();
                 }
             }
         }
@@ -52,6 +55,9 @@ public class CrazyRunner extends Game {
         }    
         if (mainScreen == false) {
             this.setScreen(gameScreen);
+        }
+        if(htpScreen == true){
+            // this.setHtpScreen(helpScreen);
         }
     }
 
@@ -76,6 +82,9 @@ public class CrazyRunner extends Game {
     public void setGameScreen(){
         this.mainScreen = false;
     }
+    public void setHtpScreen(){
+        this.howToPlay = true;
+    }
 
     public boolean mainScreen() {
         return this.mainScreen();
@@ -83,5 +92,9 @@ public class CrazyRunner extends Game {
     
     public boolean GameScreen(){
         return this.GameScreen();
+    }
+    
+    public boolean htpScreen(){
+        return this.htpScreen();
     }
 }

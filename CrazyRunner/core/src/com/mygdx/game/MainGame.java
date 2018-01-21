@@ -37,7 +37,9 @@ public class MainGame implements Screen {
 
     private int getPlayerPositionX;
     private int getPlayerPositionY;
-    // private Sound music;
+    private Sound music;
+    
+    private AnimatedPlayer man;
 
     public MainGame(CrazyRunner game) {
         //initialize all variables
@@ -50,6 +52,8 @@ public class MainGame implements Screen {
         this.water = new Water(1200, 60);
         generate();
         personImg = new Texture("person.png");
+        
+        man = new AnimatedPlayer(100, 100);
 
         this.batch = game.getBatch();
         
@@ -70,7 +74,6 @@ public class MainGame implements Screen {
                 }
             } else {
                 this.spot[i] = generateRange(2, 3);
-                System.out.println(this.spot[i]);
             }
         }
     }
@@ -90,13 +93,12 @@ public class MainGame implements Screen {
     @Override
     public void render(float deltaTime) {
         
-        // music.play();
-
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //draws terrains
         batch.begin();
+        
         //counts 15 spots and places terrain in each spot
         for (int i = 0; i < 15; i++) {
             //1, 2, 3 determine which terrain is rendered, then increase y accordingly for next row
@@ -139,6 +141,8 @@ public class MainGame implements Screen {
 
         // draw player
         batch.draw(personImg, player.getX(), player.getY(), 55, 55);
+        
+        man.update(deltaTime);
 
         //regenerates terrain to continue game
         if (player.getY() > 840) {
