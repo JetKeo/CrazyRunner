@@ -12,34 +12,33 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  * @author jetkeo
  */
 public abstract class Objects {
-    int terrain;
     
-    float x;
-    float y;
+    private int width;
+    private int length;
+    private int x;
 
     
-    public Objects(int terrain, float x, float y){
-        this.terrain = terrain;
+    public Objects(int width, int length){
         
-        this.x = x;
-        this.y = y;
+        this.width = width;
+        this.length = length;
  
     }
     
-    public int getTerrain(){
-        return terrain;
+    public int getWidth(){
+        return width;
     }
     
-    public float getX(){
+    public int getLength(){
+        return length;
+    }
+    
+    public int getX(){
         return x;
     }
-    
-    public float getY(){
-        return y;
-    }
+
     
     
-        
     
     
     
