@@ -34,9 +34,10 @@ public class MainGame implements Screen {
     private int grassCount;
     //spritebatch
     private SpriteBatch batch;
-    
+
     private int getPlayerPositionX;
     private int getPlayerPositionY;
+    // private Sound music;
 
     public MainGame(CrazyRunner game) {
         //initialize all variables
@@ -49,9 +50,9 @@ public class MainGame implements Screen {
         this.water = new Water(1200, 60);
         generate();
         personImg = new Texture("person.png");
-        
 
         this.batch = game.getBatch();
+        
     }
 
     /*
@@ -88,6 +89,8 @@ public class MainGame implements Screen {
 
     @Override
     public void render(float deltaTime) {
+        
+        // music.play();
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -108,46 +111,50 @@ public class MainGame implements Screen {
                 this.y = this.y + 60;
             }
 
-
         }
-       // if player moves up
-        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
-            player.setY(player.getY() + 15);
+        // if player moves up + implementing screen boundaries
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            if (player.getY() != 900) {
+                player.setY(player.getY() + 30);
+            }
         }
         // if player moves down
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
-            player.setY(player.getY() - 15);
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            if (player.getY() != 0) {
+                player.setY(player.getY() - 30);
+            }
         }
         // if player moves right
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            player.setX(player.getX() + 15);
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            if (player.getX() <= 1139) {
+                player.setX(player.getX() + 30);
+            }
         }
         // if player moves left
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT))  {
-            player.setX(player.getX() - 15);
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            if (player.getX() != 0) {
+                player.setX(player.getX() - 30);
+            }
         }
-        
-       
-		
-		batch.draw(personImg, player.getX(), player.getY(), 55, 55);
-		
-        
-        
+
+        // draw player
+        batch.draw(personImg, player.getX(), player.getY(), 55, 55);
+
         //regenerates terrain to continue game
-        if(player.getY() > 840){
+        if (player.getY() > 840) {
             generate();
             player.resetY();
         }
-        
+
         batch.end();
         //reset y back to 0
         this.y = 0;
     }
 
-    public int[] getSpot(){
+    public int[] getSpot() {
         return this.spot;
     }
-    
+
     @Override
     public void resize(int i, int i1) {
     }
