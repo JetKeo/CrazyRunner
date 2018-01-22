@@ -93,11 +93,15 @@ public class MainGame implements Screen {
     @Override
     public void render(float deltaTime) {
         
+        man.update(deltaTime);
+        
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //draws terrains
         batch.begin();
+        
+        man.render(batch);
         
         //counts 15 spots and places terrain in each spot
         for (int i = 0; i < 15; i++) {

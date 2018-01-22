@@ -18,7 +18,7 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  *
- * @author lamon
+ * @author shezar
  */
 public class AnimatedPlayer {
     // player location variables
@@ -89,7 +89,7 @@ public class AnimatedPlayer {
         this.facingLeft = false;
         // my collision rectangle is at the x,y value passed in
         // it has the width and height of the standing picture
-        this.bounds = new Rectangle(x, y, stand.getRegionWidth(), stand.getRegionHeight());
+        // this.bounds = new Rectangle(x, y, stand.getRegionWidth(), stand.getRegionHeight());
     }
     
     public float getX(){
@@ -127,43 +127,9 @@ public class AnimatedPlayer {
         this.x = this.x + this.dx;
 
         // update collision rectangle
-        this.bounds.setX(this.x);
-        this.bounds.setY(this.y);
+        // this.bounds.setX(this.x);
+        // this.bounds.setY(this.y);
     }
-
-//    public void fixCollision(Rectangle block) {
-//        // are they colliding?
-//        if (bounds.overlaps(block)) {
-//            // calculate how much the are overlaping
-//            float width = Math.min(bounds.x + bounds.width, block.x + block.width) - Math.max(bounds.x, block.x);
-//            float height = Math.min(bounds.y + bounds.height, block.y + block.height) - Math.max(bounds.y, block.y);
-//            // seperate the axis by finding the least amount of collision
-//            if (width < height) {
-//                // on the left
-//                if (this.x < block.x) {
-//                    // move the player to the left
-//                    this.x = this.x - width;
-//                // on the right
-//                } else {
-//                    // move the player to the right
-//                    this.x = this.x + width;
-//                }
-//            } else {
-//                // under it
-//                if (this.y < block.y) {
-//                    // move the player down
-//                    this.y = this.y - height;
-//                // above it
-//                } else {
-//                    // move the player up
-//                    this.y = this.y + height;
-//                }
-//            }
-//            // update the collision box to match the player
-//            bounds.setX(this.x);
-//            bounds.setY(this.y);
-//        }
-//    }
 
     public void render(SpriteBatch batch) {
         // standing

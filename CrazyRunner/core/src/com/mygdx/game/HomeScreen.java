@@ -27,7 +27,7 @@ public class HomeScreen implements Screen{
     // start button
     private Texture start;
  
-    private AnimatedPlayer man;
+    // private AnimatedPlayer man;
     
     public HomeScreen(CrazyRunner game){
         //initialize all variables
@@ -37,7 +37,7 @@ public class HomeScreen implements Screen{
         rules = new Texture("rules.png");
         start = new Texture("start.png");
         
-        man = new AnimatedPlayer(100, 100);
+        // man = new AnimatedPlayer(100, 100);
     }
     
     
@@ -52,7 +52,7 @@ public class HomeScreen implements Screen{
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
-        man.update(f);
+        // man.update(f);
         
         // begin batch
         batch.begin();
