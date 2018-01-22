@@ -9,7 +9,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import java.awt.Color;
+import java.awt.Font;
 
 /**
  *
@@ -40,6 +43,9 @@ public class MainGame implements Screen {
     private Sound music;
     
     private AnimatedPlayer man;
+    
+    private BitmapFont font;
+    private CharSequence str;
 
     public MainGame(CrazyRunner game) {
         //initialize all variables
@@ -57,6 +63,10 @@ public class MainGame implements Screen {
 
         this.batch = game.getBatch();
         
+        font = new BitmapFont();
+        font.getData().setScale(2);
+        str = "0";
+        
     }
 
     /*
@@ -64,8 +74,10 @@ public class MainGame implements Screen {
      * and last
      */
     public void generate() {
+        //base case of grass at the beginning and end of screen
         this.spot[0] = 1;
         this.spot[14] = 1;
+        //randomly generates with a maximum of 3 grass
         for (int i = 1; i < 14; i++) {
             if (grassCount != 3) {
                 this.spot[i] = (int) Math.ceil(Math.random() * 3);
@@ -76,6 +88,8 @@ public class MainGame implements Screen {
                 this.spot[i] = generateRange(2, 3);
             }
         }
+        //resets maximum grass generated
+        grassCount = 0;
     }
 
     /*
@@ -118,6 +132,11 @@ public class MainGame implements Screen {
             }
 
         }
+        
+        
+        font.draw(batch, str, 1150, 875);
+        
+        
         // if player moves up + implementing screen boundaries
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             if (player.getY() != 900) {
@@ -159,6 +178,7 @@ public class MainGame implements Screen {
         this.y = 0;
     }
 
+    //returns position array
     public int[] getSpot() {
         return this.spot;
     }
