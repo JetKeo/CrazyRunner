@@ -37,7 +37,7 @@ public class MainGame implements Screen {
 
     private int getPlayerPositionX;
     private int getPlayerPositionY;
-    private Sound music;
+
     
     private AnimatedPlayer man;
 

@@ -26,6 +26,12 @@ public class HomeScreen implements Screen{
     private Texture rules;
     // start button
     private Texture start;
+    // boolean
+    private CrazyRunner setMainScreen;
+    // boolean
+    private CrazyRunner setGameScreen;
+    //boolean
+    private boolean gameScreen;
  
     // private AnimatedPlayer man;
     
@@ -33,10 +39,12 @@ public class HomeScreen implements Screen{
         //initialize all variables
         this.gameManager = game; 
         this.batch = game.getBatch();
+        
         main = new Texture("screen.gif");
         rules = new Texture("rules.png");
         start = new Texture("start.png");
         
+        this.gameScreen = false;
         // man = new AnimatedPlayer(100, 100);
     }
     
@@ -67,6 +75,28 @@ public class HomeScreen implements Screen{
         
         // draw start button
         batch.draw(start, 50, 450, 300, 300);
+        
+         // mouse input
+        if (Gdx.input.isTouched()) {
+            int mouseX = Gdx.input.getX();
+            int mouseY = Gdx.input.getY();
+            
+            // start button
+            if (mouseX >= 50 && mouseX <= 400) {
+                if (mouseX >= 50 && mouseX <= 400) {
+                    for(int i = 0; i < 10; i++){
+                        System.out.println("hello" + i);
+                    }
+                    setGameScreen();
+                }
+            }
+            // how to play button
+            if (mouseX >= 15 && mouseX <= 215) {
+                if (mouseX >= 15 && mouseX <= 76) {
+                    // setHtpScreen();
+                }
+            }
+        }
             
         // end batch
         batch.end();
@@ -95,6 +125,10 @@ public class HomeScreen implements Screen{
 
     @Override
     public void dispose() {
+        
+    }
+    public boolean setGameScreen(){
+        return gameScreen = true;
         
     }
     
