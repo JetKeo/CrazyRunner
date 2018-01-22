@@ -38,8 +38,6 @@ public class MainGame implements Screen {
     private int getPlayerPositionX;
     private int getPlayerPositionY;
     
-    private Player personImg;
-
     public MainGame(CrazyRunner game) {
         //initialize all variables
         this.gameManager = game;
