@@ -22,13 +22,22 @@ public class HomeScreen implements Screen{
     private SpriteBatch batch;
     // background
     private Texture main;
+    // rules button
+    private Texture rules;
+    // start button
+    private Texture start;
+ 
+    // private AnimatedPlayer man;
     
     public HomeScreen(CrazyRunner game){
         //initialize all variables
         this.gameManager = game; 
         this.batch = game.getBatch();
         main = new Texture("screen.gif");
+        rules = new Texture("rules.png");
+        start = new Texture("start.png");
         
+        // man = new AnimatedPlayer(100, 100);
     }
     
     
@@ -39,13 +48,27 @@ public class HomeScreen implements Screen{
 
     @Override
     public void render(float f) {
+        // clear screen
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
+        // man.update(f);
+        
+        // begin batch
         batch.begin();
         
+        
+        
+        // draw homepage background
         batch.draw(main, 0, 0, 1200, 900);
-                
+        
+        // draw rules button
+        batch.draw(rules, 15, 15, 200, 61);
+        
+        // draw start button
+        batch.draw(start, 50, 450, 300, 300);
+            
+        // end batch
         batch.end();
         
     }

@@ -12,38 +12,57 @@ public class CrazyRunner extends Game {
 
     private SpriteBatch batch;
     private boolean mainScreen;
+    private boolean htpScreen;
+    private boolean howToPlay;
+    private Sound music;
+    
 
     @Override
     public void create() {
 
         batch = new SpriteBatch();
-      
-        this.mainScreen = false;
         
-//        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-//            this.mainScreen = false;
-//        }else{
-//            this.mainScreen = true;
-//        }
+        // game screens
+        HomeScreen gameMenu = new HomeScreen(this);
+        MainGame gameScreen = new MainGame(this);
+        HowToPlay helpScreen = new HowToPlay(this);
+        
+        // set to main screen when game starts
+        howToPlay = false;
+        setGameScreen();
 
-        if (mainScreen == true) {
-            HomeScreen game = new HomeScreen(this);
-            this.setScreen(game);
+        // mouse input
+        if (Gdx.input.isTouched()) {
+            int mouseX = Gdx.input.getX();
+            int mouseY = Gdx.input.getY();
+            
+            // start button
+            if (mouseX >= 50 && mouseX <= 400) {
+                if (mouseX >= 50 && mouseX <= 400) {
+                    setGameScreen();
+                }
+            }
+            // how to play button
+            if (mouseX >= 15 && mouseX <= 215) {
+                if (mouseX >= 15 && mouseX <= 76) {
+                    setHtpScreen();
+                }
+            }
         }
+        
+        if (mainScreen == true) {
+            this.setScreen(gameMenu);
+        }    
         if (mainScreen == false) {
-            MainGame game = new MainGame(this);
-            this.setScreen(game);
+            this.setScreen(gameScreen);
+        }
+        if(htpScreen == true){
+            // this.setHtpScreen(helpScreen);
         }
     }
 
     @Override
     public void render() {
-        //clear screen to prep for drawing
-//        Gdx.gl20.glClearColor(0, 0, 0, 1);
-//        Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
-//        batch.begin();
-//        batch.end();
-
         super.render();
     }
 
@@ -56,12 +75,26 @@ public class CrazyRunner extends Game {
         return batch;
     }
 
-//    public void setMainScreen() {
-//        this.mainScreen = true;
-//
-//    }
-//
-//    public boolean mainScreen() {
-//        return this.mainScreen();
-//    }
+    public void setMainScreen() {
+        this.mainScreen = true;
+    }
+    
+    public void setGameScreen(){
+        this.mainScreen = false;
+    }
+    public void setHtpScreen(){
+        this.howToPlay = true;
+    }
+
+    public boolean mainScreen() {
+        return this.mainScreen();
+    }
+    
+    public boolean GameScreen(){
+        return this.GameScreen();
+    }
+    
+    public boolean htpScreen(){
+        return this.htpScreen();
+    }
 }

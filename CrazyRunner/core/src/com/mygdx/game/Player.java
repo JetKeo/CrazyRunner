@@ -38,36 +38,6 @@ public class Player {
         x = 600;
     }
     
-    /**
-     *
-     * @param player
-     */
-    public void render(SpriteBatch player){
-        // keyboard input
-        // if player moves up
-        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
-            y = y + 15;
-        }
-        // if player moves down
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
-            y = y - 15;
-        }
-        // if player moves right
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            x = x + 15;
-        }
-        // if player moves left
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT))  {
-            x = x - 15;
-        }
-        
-        Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(personImg, x, y, 55, 55);
-		batch.end();
-        
-    }
     public int getX(){
         return x;
     }
