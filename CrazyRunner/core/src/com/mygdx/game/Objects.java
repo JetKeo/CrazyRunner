@@ -18,8 +18,9 @@ public abstract class Objects {
     private int x;
 
     
-    public Objects(int width, int length){
+    public Objects(int x, int width, int length){
         
+        this.x = x;
         this.width = width;
         this.length = length;
  
@@ -36,6 +37,7 @@ public abstract class Objects {
     public int getX(){
         return x;
     }
+
 
     
     

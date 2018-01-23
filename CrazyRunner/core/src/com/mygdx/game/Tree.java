@@ -17,8 +17,8 @@ import java.util.Random;
 public class Tree extends Objects {
     private Texture tree;
 
-    public Tree(int width, int height) {
-        super(width, height);
+    public Tree(int x,int width, int height) {
+        super(x, width, height);
         tree = new Texture("tree.png");
     }
     
