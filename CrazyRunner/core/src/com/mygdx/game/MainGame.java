@@ -55,6 +55,7 @@ public class MainGame implements Screen {
     
     // how to play background
     private Texture htpBackground;
+    private Texture rulesText;
     
     // boolean statements to switch screens
     // game screen
@@ -107,6 +108,7 @@ public class MainGame implements Screen {
         // how to play images
         // background
         htpBackground = new Texture("htpBackground.jpg");
+        rulesText = new Texture("rulesHeader.png");
         
         // game screen images
         // back arrow image
@@ -303,6 +305,8 @@ public class MainGame implements Screen {
             batch.draw(htpBackground, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
             // draw back arrow
             batch.draw(back, 10, 850, 75, 32);
+            // draw rules header
+            batch.draw(rulesText, 300, 690, 600, 200);
 
             // info instructions text
         }       
