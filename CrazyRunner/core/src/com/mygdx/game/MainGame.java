@@ -246,6 +246,11 @@ public class MainGame implements Screen {
                 }
 
             }
+            
+            font = new BitmapFont();
+                font.getData().setScale(2);
+                str = "0";
+                
             // if player moves up + implementing screen boundaries
             if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
                 if (player.getY() != 900) {
