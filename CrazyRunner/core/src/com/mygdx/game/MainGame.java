@@ -15,7 +15,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 /**
- *
+ *.
  * @author khans4349
  */
 public class MainGame implements Screen {
@@ -477,4 +477,5 @@ for (int i = 0; i < 15; i++) {
     @Override
     public void dispose() {
     }
+    
 }
