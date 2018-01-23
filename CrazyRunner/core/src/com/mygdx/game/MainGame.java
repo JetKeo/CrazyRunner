@@ -9,6 +9,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
@@ -63,6 +64,10 @@ public class MainGame implements Screen {
     // start screen
     private boolean startScreen;
     
+    //font
+    BitmapFont font;
+    //character sequence
+    CharSequence str;
     // working on this class 
     private AnimatedPlayer man;
     
@@ -112,6 +117,11 @@ public class MainGame implements Screen {
         this.htpScreen = false;
         this.startScreen = true;
         
+        //font
+        font = new BitmapFont();
+        font.getData().setScale(2);
+        str = "0";
+        
         // working on
 //        man = new AnimatedPlayer(100, 100);
 
@@ -134,6 +144,8 @@ public class MainGame implements Screen {
                 this.spot[i] = generateRange(2, 3);
             }
         }
+        //reset max grass
+        grassCount = 0;
     }
 
     /*
@@ -237,6 +249,9 @@ public class MainGame implements Screen {
                 }
 
             }
+            
+            
+            
             // if player moves up + implementing screen boundaries
             if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
                 if (player.getY() != 900) {
@@ -261,6 +276,9 @@ public class MainGame implements Screen {
                     player.setX(player.getX() - 30);
                 }
             }
+            
+            //draw font
+            font.draw(batch, str, 1150, 875);
 
             // draw player
             batch.draw(personImg, player.getX(), player.getY(), 55, 55);
