@@ -31,6 +31,7 @@ public class MainGame implements Screen {
     private Texture personImg;
     private int getPlayerPositionX;
     private int getPlayerPositionY;
+    private int score;
     
     //terrain variables
     //array to determine terrain type
@@ -66,10 +67,9 @@ public class MainGame implements Screen {
     // start screen
     private boolean startScreen;
     
-    //font
-    BitmapFont font;
-    //character sequence
-    CharSequence str;
+    //score updater
+    private int prePos;
+    
     // working on this class 
     private AnimatedPlayer man;
     
@@ -87,6 +87,10 @@ public class MainGame implements Screen {
         
         // player
         player = new Player();
+        score = 0;
+        
+        //score updater at 0
+        prePos = 0;
         
         // terain variables
         spot = new int[15];
@@ -107,6 +111,7 @@ public class MainGame implements Screen {
         rules = new Texture("rules.png");
         // start button
         start = new Texture("start.png");
+        
         
         // how to play images
         // background
@@ -239,8 +244,6 @@ public class MainGame implements Screen {
         //counts 15 spots and places terrain in each spot
         if (gameScreen == true && htpScreen == false && startScreen == false) {
             
-            
-            
             for (int i = 0; i < 15; i++) {
                 //1, 2, 3 determine which terrain is rendered, then increase y accordingly for next row
                 if (spot[i] == 1) {
@@ -255,83 +258,65 @@ public class MainGame implements Screen {
                 }
 
             }
+            //update score
+            if(player.getY() >= prePos + 60){
+                prePos = prePos + 60;
+                score = score + 1;
+                str = Integer.toString(score + 1); 
+            }
+             //draw font
+            font.draw(batch, str, 1150, 875);
             
-            
+            //draw back button
+            batch.draw(back, 10, 850, 75, 32);
             
             // if player moves up + implementing screen boundaries
             if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
                 if (player.getY() != 900) {
-                    player.setY(player.getY() + 30);
+                    player.setY(player.getY() + 3);
                 }
             }
             // if player moves down
             if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
                 if (player.getY() != 0) {
-                    player.setY(player.getY() - 30);
+                    player.setY(player.getY() - 3);
                 }
             }
             // if player moves right
             if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
                 if (player.getX() <= 1139) {
-                    player.setX(player.getX() + 30);
+                    player.setX(player.getX() + 3);
                 }
             }
             // if player moves left
             if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
                 if (player.getX() != 0) {
-                    player.setX(player.getX() - 30);
+                    player.setX(player.getX() - 3);
                 }
             }
             
-            //draw font
-            font.draw(batch, str, 1150, 875);
+           
+            
+            //player
+            batch.draw(personImg, player.getX(), player.getY(), 55, 55);
 
         }
         
-        
-        font.draw(batch, str, 1150, 875);
-        
-        
-        // if player moves up + implementing screen boundaries
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            if (player.getY() != 900) {
-                player.setY(player.getY() + 30);
-            }
-        }
-        // if player moves down
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            if (player.getY() != 0) {
-                player.setY(player.getY() - 30);
-            }
-        }
-        // if player moves right
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            if (player.getX() <= 1139) {
-                player.setX(player.getX() + 30);
-            }
-        }
-        // if player moves left
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            if (player.getX() != 0) {
-                player.setX(player.getX() - 30);
-            }
-        }
 
             //regenerates terrain to continue game
             if (player.getY() > 840) {
                 generate();
                 player.resetY();
+                prePos = 0;
             }
             
-            // draw back arrow
-            batch.draw(back, 10, 850, 75, 32);
+
 
             
             //reset y back to 0
             this.y = 0;
-
-        }
-        // how to play screen
+            
+            // how to play screen
         if (gameScreen == false && htpScreen == true && startScreen == false) {
             // background
             batch.draw(htpBackground, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -341,7 +326,10 @@ public class MainGame implements Screen {
             // info instructions text
         }       
         batch.end(); 
-    }
+
+        }
+        
+    
 
     //returns position array
     public int[] getSpot() {
