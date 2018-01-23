@@ -11,10 +11,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class CrazyRunner extends Game {
 
+    // instance variables
     private SpriteBatch batch;
-//    private boolean mainScreen;
-//    private boolean htpScreen;
-//    private boolean howToPlay;
     private Music music;
     private boolean setGameScreen;
     
@@ -23,29 +21,16 @@ public class CrazyRunner extends Game {
     public void create() {
 
         // initialize variables
-        this.setGameScreen = false;
-        
-        batch = new SpriteBatch();
-        
+        this.setGameScreen = false;     
+        batch = new SpriteBatch();     
         // import sound
         Music music = Gdx.audio.newMusic(Gdx.files.internal("sound.mp3"));
         // play sound
-        music.play();
-              
-        // game screens
-        HomeScreen gameMenu = new HomeScreen(this);
-        MainGame gameScreen = new MainGame(this);
-        HowToPlay helpScreen = new HowToPlay(this);
-        
-        // set default to home screen
-        this.setScreen(gameMenu);
-           
-        // once      
-        if (setGameScreen == true) {
-            System.out.println("hello111");
-            this.getScreen().hide();
-            this.setScreen(gameScreen);   
-        }  
+        music.play();         
+        // set screen to be used
+        MainGame gameScreen = new MainGame(this);   
+        // turn on th main game screen
+        this.setScreen(gameScreen);
     }
 
     @Override
@@ -62,10 +47,7 @@ public class CrazyRunner extends Game {
         return batch;
     }
     
-//    public setScreen(CrazyRunner game){
-//        if(setGameScreen == true){
-//            this.setScreen(gameScreen);
-//        }
+    
     }
-}
-}
+
+
