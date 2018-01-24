@@ -309,6 +309,10 @@ public class AnimatedPlayer {
     public void resetY() {
         this.y = 0;
     }
+    
+    public void resetX(){
+        this.x = Gdx.graphics.getWidth()/2 - (55/2);
+    }
 
     public void setX(int x) {
         this.x = x;

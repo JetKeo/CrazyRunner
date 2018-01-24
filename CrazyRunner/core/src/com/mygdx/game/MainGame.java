@@ -41,6 +41,7 @@ public class MainGame implements Screen {
     private Water water;
     //y keeps track of where the terrains are located
     private int y;
+    private int x;
     //limiting variable for the amount of grass
     private int grassCount;
     
@@ -80,6 +81,9 @@ public class MainGame implements Screen {
     // Font
     private BitmapFont font;
     private CharSequence str;
+    
+    // restart boolean
+    private boolean restart;
 
     public MainGame(CrazyRunner game) {
         //initialize all variables
@@ -141,6 +145,8 @@ public class MainGame implements Screen {
         font.getData().setScale(2);
         str = "0";
         
+        // restart variable starts at false for player
+        this.restart = false;      
     }
 
     /*
@@ -205,7 +211,7 @@ public class MainGame implements Screen {
             // how to play button
             if (mouseX >= 10 && mouseX <= 190 && startScreen == true) {
                 if (mouseY >= 825 && mouseY <= 885) {
-                    System.out.println("ola");
+               
                     htpScreen = true;
                     startScreen = false;
                 }
@@ -215,7 +221,7 @@ public class MainGame implements Screen {
             // back button
             if (mouseX >= 10 && mouseX <= 82 && gameScreen == true) {
                 if (mouseY >= 18 && mouseY <= 50) {
-                    System.out.println("ola");
+              
                     startScreen = true;
                     gameScreen = false;
                 }
@@ -225,7 +231,7 @@ public class MainGame implements Screen {
             // back button
             if (mouseX >= 10 && mouseX <= 82 && htpScreen == true) {
                 if (mouseY >= 18 && mouseY <= 50) {
-                    System.out.println("ola");
+               
                     startScreen = true;
                     htpScreen = false;
                 }
@@ -335,7 +341,7 @@ public class MainGame implements Screen {
             
             if(p1.getY() > 840){
                 generate();
-                p1.resetY();
+            p1.resetY();
                 prePos = 0;
             }
                     
@@ -369,6 +375,38 @@ public class MainGame implements Screen {
     public int[] getSpot() {
         return this.spot;
     }
+    
+    public void resetScore(){
+        score = 0;
+    }
+    
+    // once player dies and needs to restart
+    public void reset(){
+        // if death becomes true
+        if(restart == true){
+            p1.resetY();
+            p1.resetX();
+            resetScore();          
+        }
+        // set death to false
+        restart = false;
+    }
+    
+    // check collisions with car
+    public void collisionCar(){
+        
+    }
+    // check collisions with tree
+    public void collisionTree(){
+        
+    }
+    // check collission with water
+    public void collisionWater(){
+        if(water.getY() == p1.getY()){
+            restart = true;
+        }
+    }
+    
 
     @Override
     public void resize(int i, int i1) {

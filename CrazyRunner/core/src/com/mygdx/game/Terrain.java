@@ -17,6 +17,7 @@ public abstract class Terrain {
     private int xsize;
     private int ysize;
     private int y;
+    private int x;
 
     public Terrain(int xsize, int ysize){
         this.xsize = xsize;
@@ -33,5 +34,9 @@ public abstract class Terrain {
     
     public int getY(){
         return this.y;
+    }
+    
+    private int getX(){
+        return this.x;
     }
 }
