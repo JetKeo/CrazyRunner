@@ -27,8 +27,8 @@ public class MainGame implements Screen {
     private SpriteBatch batch;
     
     //player variables
-    private Player player;
-    private Texture personImg;
+    // private Player player;
+    // private Texture personImg;
     private int getPlayerPositionX;
     private int getPlayerPositionY;
     private int score;
@@ -43,6 +43,9 @@ public class MainGame implements Screen {
     private int y;
     //limiting variable for the amount of grass
     private int grassCount;
+    
+    // animated variables
+    private AnimatedPlayer p1;
     
     // SCREEN IMAGES
     
@@ -87,8 +90,9 @@ public class MainGame implements Screen {
         this.batch = game.getBatch();
         
         // player
-        player = new Player();
+        // player = new Player();
         score = 0;
+        p1 = new AnimatedPlayer(Gdx.graphics.getWidth()/2 - (55/2) , 5);
         
         //score updater at 0
         prePos = 0;
@@ -103,7 +107,7 @@ public class MainGame implements Screen {
         
         // import texture from assets
         //person img
-        personImg = new Texture("person.png");
+        // personImg = new Texture("person.png");
         
         // home screen images
         // background
@@ -133,9 +137,6 @@ public class MainGame implements Screen {
         font.getData().setScale(2);
         str = "0";
         
-        // working on
-//        man = new AnimatedPlayer(100, 100);
-
     }
 
     /*
@@ -175,6 +176,8 @@ public class MainGame implements Screen {
 
     @Override
     public void render(float deltaTime) {
+        
+        p1.update(deltaTime);
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -261,7 +264,7 @@ public class MainGame implements Screen {
 
             }
             //update score
-            if(player.getY() >= prePos + 60){
+            if(p1.getY() >= prePos + 60){
                 prePos = prePos + 60;
                 score = score + 1;
                 str = Integer.toString(score + 1); 
@@ -272,49 +275,65 @@ public class MainGame implements Screen {
             //draw back button
             batch.draw(back, 10, 850, 75, 32);
             
-            // if player moves up + implementing screen boundaries
-            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-                if (player.getY() != 900) {
-                    player.setY(player.getY() + 3);
-                }
-            }
-            // if player moves down
-            if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-                if (player.getY() != 0) {
-                    player.setY(player.getY() - 3);
-                }
-            }
+//            // if player moves up + implementing screen boundaries
+//            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+//                if (player.getY() != 900) {
+//                    player.setY(player.getY() + 3);
+//                }
+//            }
+//            // if player moves down
+//            if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+//                if (player.getY() != 0) {
+//                    player.setY(player.getY() - 3);
+//                }
+//            }
+//            // if player moves right
+//            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+//                if (player.getX() <= 1139) {
+//                    player.setX(player.getX() + 3);
+//                }
+//            }
+//            // if player moves left
+//            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+//                if (player.getX() != 0) {
+//                    player.setX(player.getX() - 3);
+//                }
+//            }
+            
             // if player moves right
             if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-                if (player.getX() <= 1139) {
-                    player.setX(player.getX() + 3);
+                if (p1.getX() <= 1105) {
+                    p1.setX((int) (p1.getX() + 15));
                 }
             }
             // if player moves left
             if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-                if (player.getX() != 0) {
-                    player.setX(player.getX() - 3);
+                if (p1.getX() >= 0) {
+                    p1.setX((int) (p1.getX() - 15));
                 }
             }
-            
-           
-            
+                       
             //player
-            batch.draw(personImg, player.getX(), player.getY(), 55, 55);
+            // batch.draw(personImg, player.getX(), player.getY(), 55, 55);
+            
+            p1.render(batch);
 
         }
         
 
             //regenerates terrain to continue game
-            if (player.getY() > 840) {
+//            if (player.getY() > 840) {
+//                generate();
+//                player.resetY();
+//                prePos = 0;
+//            }
+            
+            if(p1.getY() > 840){
                 generate();
-                player.resetY();
+                p1.resetY();
                 prePos = 0;
             }
-            
-
-
-            
+                    
             //reset y back to 0
             this.y = 0;
             

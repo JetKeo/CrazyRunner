@@ -1,0 +1,76 @@
+
+man2.png
+size: 1024,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+run
+  rotate: false
+  xy: 2, 10
+  size: 97, 82
+  orig: 97, 82
+  offset: 0, 0
+  index: 2
+run
+  rotate: false
+  xy: 101, 9
+  size: 96, 83
+  orig: 96, 83
+  offset: 0, 0
+  index: 7
+run
+  rotate: false
+  xy: 199, 6
+  size: 90, 86
+  orig: 90, 86
+  offset: 0, 0
+  index: 3
+run
+  rotate: false
+  xy: 291, 6
+  size: 86, 86
+  orig: 86, 86
+  offset: 0, 0
+  index: 8
+run
+  rotate: false
+  xy: 379, 2
+  size: 82, 90
+  orig: 82, 90
+  offset: 0, 0
+  index: 1
+run
+  rotate: false
+  xy: 463, 3
+  size: 75, 89
+  orig: 75, 89
+  offset: 0, 0
+  index: 0
+run
+  rotate: false
+  xy: 540, 10
+  size: 81, 82
+  orig: 81, 82
+  offset: 0, 0
+  index: 6
+run
+  rotate: false
+  xy: 623, 6
+  size: 71, 86
+  orig: 71, 86
+  offset: 0, 0
+  index: 5
+run
+  rotate: false
+  xy: 761, 6
+  size: 60, 86
+  orig: 60, 86
+  offset: 0, 0
+  index: 4
+standR
+  rotate: false
+  xy: 696, 5
+  size: 63, 87
+  orig: 63, 87
+  offset: 0, 0
+  index: -1

@@ -7,10 +7,11 @@ import com.badlogic.gdx.tools.texturepacker.TexturePacker.Settings;
 import com.mygdx.game.CrazyRunner;
 
 public class DesktopLauncher {
-	public static void main (String[] arg) {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+	public static void main (String[] arg) {	            
+            LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = 1200;
-                config.height = 900;              
+                config.height = 900;    
+                // TexturePacker.process("raw2", "packed2", "man2");
                 new LwjglApplication(new CrazyRunner(), config);
 	}
 }

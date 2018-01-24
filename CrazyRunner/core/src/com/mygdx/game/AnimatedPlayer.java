@@ -21,32 +21,49 @@ import com.badlogic.gdx.utils.Array;
  * @author shezar
  */
 public class AnimatedPlayer {
+
     // player location variables
+
     private float x;
     private float y;
     // player movement variables
     private float dx;
     private float dy;
-    // facing left or not
-    private boolean facingLeft;
+    // facing down or not
+    private boolean facingDown;
+//    // face right or not
+//    private boolean facingRight;
 
     // the amount of time an animation has been running
     private float elapsed;
 
     // animation variables for moving
     private Animation<TextureRegion> run;
+    private Animation<TextureRegion> runD;
+
+    private Animation<TextureRegion> runR;
     private Animation<TextureRegion> runL;
-    
+
     // pictures when standing still
     private TextureRegion stand;
+    private TextureRegion standD;
+
+    private TextureRegion standR;
     private TextureRegion standL;
 
     // texture atlas that will help load in the images from the big image
     // this was created from running the texture packer (in Desktop Launcher)
     private TextureAtlas atlas;
+    
+//    // for horizontal animations
+//    private TextureAtlas atlas2;
 
-    // the collision rectangle to help us fix collisions
-    private Rectangle bounds;
+    // set speed of player
+    private int speed;
+    
+//    // prevent render erro
+//    private boolean vertical;
+//    private boolean horizontal;
 
     // constructor - we need to know where the player starts
     public AnimatedPlayer(float x, float y) {
@@ -61,96 +78,248 @@ public class AnimatedPlayer {
         // no animation going on, so no time yet
         this.elapsed = 0;
 
+        // players speed
+        this.speed = 15;
+        
+//        // prevent render error
+//        this.vertical = true;
+//        this.horizontal = false;
+
         // load in the texture atlast to start finding pictures
         this.atlas = new TextureAtlas("packed/man.atlas");
+        
+//        // second atlas
+//        this.atlas2 = new TextureAtlas("packed2/man2.atlas");
 
         // finding the standing picture and load it in
         this.stand = atlas.findRegion("stand");
         // we create a new texture from the standing picture
         // this creates a duplicate picture so we can flip it for the other direction
-        this.standL = new TextureRegion(stand);
-        this.standL.flip(true, false);
+        this.standD = new TextureRegion(stand);
+        this.standD.flip(false, true);
 
         // create a run animation by finding every picture named run
         // the atlas has an index from each picture to order them correctly
         // this was done by naming the pictures in a certain way (run_1, run_2, etc.)
-        run = new Animation(1f / 10f, atlas.findRegions("run"));
+        // load in picture from atlas going up
+        
+        // create up animation
+        run = new Animation(1f / 20f, atlas.findRegions("run"));
 
         // load in the pictures from the atlas again, but we will flip them this time
-        Array<AtlasRegion> runLFrames = atlas.findRegions("run");
-        for (int i = 0; i < runLFrames.size; i++) {
+        Array<AtlasRegion> runDFrames = atlas.findRegions("run");
+        for (int i = 0; i < 9; i++) {
             // this is how we flip each image
-            runLFrames.get(i).flip(true, false);
+            runDFrames.get(i).flip(false, true);
         }
-        // create the left animation
-        runL = new Animation(1f / 10f, runLFrames);
+        // create the down animation
+        runD = new Animation(1f / 20f, runDFrames);
 
-        // start off by facing right
-        this.facingLeft = false;
-        // my collision rectangle is at the x,y value passed in
-        // it has the width and height of the standing picture
-        // this.bounds = new Rectangle(x, y, stand.getRegionWidth(), stand.getRegionHeight());
+        // start off by facing up
+        this.facingDown = false;
+        
+//        // start by facing up
+//        this.facingRight = false;
+
+//        // HORIZONTAL ANIMATION
+//        
+//        // load in texture facing right
+//        this.standR = atlas2.findRegion("standR");
+//        // load in texture facing left
+//        this.standL = new TextureRegion(standR);
+//        this.standL.flip(true, false);
+//        
+//        runR = new Animation(1f / 10f, atlas2.findRegions("run"));
+//        
+//        // load in the pictures from the atlas again, but we will flip them this time
+//        Array<AtlasRegion> runLFrames = atlas2.findRegions("run");
+//        for (int i = 0; i < 9; i++) {
+//            // this is how we flip each image
+//            runLFrames.get(i).flip(true, false);
+//        }
+//        // create the left animation
+//        runL = new Animation(1f / 10f, runLFrames);
+//        
+//        
+
+        // create a run animation facing right
+        // load in picture from atlas going right
+//        Array<AtlasRegion> runRFrames = atlas.findRegions("run");
+//        // start from pic 10 and go till 18
+//        for (int i = 10; i < 18; i++) {
+//            // keep same position
+//            runRFrames.get(i).flip(false, false);
+//        }
+
+//        runR = new Animation(1f / 10f, atlas.findRegions("run_10"));
+//        runR = new Animation(1f / 10f, atlas.findRegions("run_11"));
+//        runR = new Animation(1f / 10f, atlas.findRegions("run_12"));
+//        runR = new Animation(1f / 10f, atlas.findRegions("run_13"));
+//        runR = new Animation(1f / 10f, atlas.findRegions("run_14"));
+//        runR = new Animation(1f / 10f, atlas.findRegions("run_15"));
+//        runR = new Animation(1f / 10f, atlas.findRegions("run_16"));
+//        runR = new Animation(1f / 10f, atlas.findRegions("run_17"));
+//        runR = new Animation(1f / 10f, atlas.findRegions("run_18"));
+
+        // create right animation
+        // runR = new Animation(1f / 10f, runRFrames);
+
+        // create a run animation facing left
+        // load in picture from atlas
+//        Array<AtlasRegion> runLFrames = atlas.findRegions("run");
+//        // start from pic 10 and go till 18
+//        for (int i = 10; i < 18; i++) {
+//            // flip position
+//            runLFrames.get(i).flip(true, false);
+//        }
+//        // create left animation
+//        runL = new Animation(1f / 10f, runLFrames);
+        
+//        runL = new Animation(1f / 10f, atlas.findRegions("run_10"));
+//        runL = new Animation(1f / 10f, atlas.findRegions("run_11"));
+//        runL = new Animation(1f / 10f, atlas.findRegions("run_12"));
+//        runL = new Animation(1f / 10f, atlas.findRegions("run_13"));
+//        runL = new Animation(1f / 10f, atlas.findRegions("run_14"));
+//        runL = new Animation(1f / 10f, atlas.findRegions("run_15"));
+//        runL = new Animation(1f / 10f, atlas.findRegions("run_16"));
+//        runL = new Animation(1f / 10f, atlas.findRegions("run_17"));
+//        runL = new Animation(1f / 10f, atlas.findRegions("run_18"));
+        
+
     }
-    
-    public float getX(){
+
+    public float getX() {
         return x;
     }
-    
-    public float getY(){
+
+    public float getY() {
         return y;
     }
-    
-    
+
     public void update(float deltaTime) {
-        // if I'm pressing right
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+
+        // if I'm pressing up
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             // set the x displacement to start moving right
-            this.dx = 3;
-            // increase the animation timer
-            this.elapsed = this.elapsed + deltaTime;
-            // set boolean to face right
-            this.facingLeft = false;
-        } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            // set the x displacement to start moving left
-            this.dx = -3;
-            // increase the animation timer
-            this.elapsed = this.elapsed + deltaTime;
-            // im facing left
-            this.facingLeft = true;
-        } else {
-            // stop the x displacement
+            this.dy = speed;
             this.dx = 0;
+            // increase the animation timer
+            this.elapsed = this.elapsed + deltaTime;
+            // set boolean to face down
+            this.facingDown = false;
+//            this.facingRight = false;
+//            // set vertical to true
+//            vertical = true;
+//            horizontal = false;
+            
+        } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN) && this.y >= 0) {
+            // set the x displacement to start moving left
+            this.dy = -speed;
+            this.dx = 0;
+            // increase the animation timer
+            this.elapsed = this.elapsed + deltaTime;
+            // im facing down
+            this.facingDown = true;
+//            this.facingRight = false;
+//            vertical = true;
+//            horizontal = false;
+            
+        } else {
+            // stop the y displacement
+            this.dy = 0;
             // no more animation so reset the timer
             this.elapsed = 0;
+//            vertical = true;
+//            horizontal = false;
         }
+        // update y position
+        this.y = this.y + this.dy;
 
-        this.x = this.x + this.dx;
+//        // if I'm pressing right
+//        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && this.x <= 1105) {
+//            // set the x displacement to start moving right
+//            this.dx = 15;
+//            this.dy = 0;
+//            // increase the animation timer
+//            this.elapsed = this.elapsed + deltaTime;
+////            horizontal = true;
+////            vertical = false;
+////            this.facingDown = false;
+////            this.facingRight = true;
+//            
+//        } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && this.x >= 0) {
+//            // set the x displacement to start moving left
+//            this.dy = - 15;
+//            this.dy = 0;
+//            // increase the animation timer
+//            this.elapsed = this.elapsed + deltaTime;
+////            horizontal = true;
+////            vertical = false;
+////            this.facingDown = false;
+////            this.facingRight = false;
+//            
+//        } else {
+//            // stop the x displacement
+//            this.dx = 0;
+//            // no more animation so reset the timer
+//            this.elapsed = 0;
+////            horizontal = true;
+////            vertical = false;
+//        }
+        // this.x = this.x + this.dx;
 
-        // update collision rectangle
-        // this.bounds.setX(this.x);
-        // this.bounds.setY(this.y);
     }
 
     public void render(SpriteBatch batch) {
         // standing
-        if (this.dx == 0) {
+       
+        if (this.dy == 0) {
             // pic the correct picture for left or right
-            if (facingLeft) {
-                batch.draw(standL, x, y);
-            } else {
-                batch.draw(stand, x, y);
+            if (facingDown == true) {
+                batch.draw(standD, x, y, 55, 55);
+            } else {               
+                batch.draw(stand, x, y, 55, 55);
             }
-        // right animation
-        } else if (this.dx > 0) {
-            batch.draw(run.getKeyFrame(elapsed, true), x, y);
-        // left animation
-        } else if (this.dx < 0) {
-            batch.draw(runL.getKeyFrame(elapsed, true), x, y);
+            
+       
+            
+//            // horizontal animation
+//        }else if(this.dx == 0 && horizontal == true){
+//            if(facingRight == true){
+//                batch.draw(standR, x, y);
+//            }else if(facingRight == false){            
+//                batch.draw(standL, x, y);
+//            }
+            
+        }else if (this.dy > 0) {
+            batch.draw(run.getKeyFrame(elapsed, true), x, y, 55, 55);
+            // Down animation
+        } else if (this.dy < 0) {
+            batch.draw(runD.getKeyFrame(elapsed, true), x, y, 55, 55);
         }
+            // right animation
+//        } else if (this.dx > 0&& vertical == false && horizontal == true) {
+//            batch.draw(runR.getKeyFrame(elapsed, true), x, y);
+//            // left animation
+//        } else if (this.dx < 0&& vertical == false && horizontal == true) {
+//            batch.draw(runL.getKeyFrame(elapsed, true), x, y);
+//        }
     }
-    
+
+    public void resetY() {
+        this.y = 0;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
     // get rid of heavy objects
-    public void dispose(){
+    public void dispose() {
         atlas.dispose();
     }
 }

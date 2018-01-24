@@ -1,76 +1,76 @@
 
 man.png
-size: 512,256
+size: 1024,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 run
   rotate: false
-  xy: 2, 104
-  size: 127, 147
-  orig: 127, 147
-  offset: 0, 0
-  index: 8
-run
-  rotate: false
   xy: 2, 2
-  size: 89, 100
-  orig: 89, 100
+  size: 83, 97
+  orig: 83, 97
   offset: 0, 0
   index: 3
 run
   rotate: false
-  xy: 131, 160
-  size: 96, 91
-  orig: 96, 91
+  xy: 87, 3
+  size: 83, 96
+  orig: 83, 96
   offset: 0, 0
-  index: 9
+  index: 8
 run
   rotate: false
-  xy: 229, 157
-  size: 90, 94
-  orig: 90, 94
+  xy: 172, 9
+  size: 87, 90
+  orig: 87, 90
   offset: 0, 0
   index: 4
 run
   rotate: false
-  xy: 321, 161
-  size: 91, 90
-  orig: 91, 90
-  offset: 0, 0
-  index: 7
-run
-  rotate: false
-  xy: 414, 163
-  size: 92, 88
-  orig: 92, 88
+  xy: 261, 17
+  size: 90, 82
+  orig: 90, 82
   offset: 0, 0
   index: 2
 run
   rotate: false
-  xy: 228, 75
-  size: 90, 80
-  orig: 90, 80
+  xy: 353, 13
+  size: 86, 86
+  orig: 86, 86
+  offset: 0, 0
+  index: 9
+run
+  rotate: false
+  xy: 441, 24
+  size: 90, 75
+  orig: 90, 75
   offset: 0, 0
   index: 1
 run
   rotate: false
-  xy: 93, 2
-  size: 90, 84
-  orig: 90, 84
+  xy: 533, 28
+  size: 86, 71
+  orig: 86, 71
   offset: 0, 0
   index: 6
 run
   rotate: false
-  xy: 185, 4
-  size: 90, 69
-  orig: 90, 69
+  xy: 621, 18
+  size: 82, 81
+  orig: 82, 81
+  offset: 0, 0
+  index: 7
+run
+  rotate: false
+  xy: 795, 39
+  size: 86, 60
+  orig: 86, 60
   offset: 0, 0
   index: 5
 stand
   rotate: false
-  xy: 131, 88
-  size: 95, 70
-  orig: 95, 70
+  xy: 705, 36
+  size: 88, 63
+  orig: 88, 63
   offset: 0, 0
   index: -1
