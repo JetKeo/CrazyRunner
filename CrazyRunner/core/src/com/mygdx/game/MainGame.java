@@ -62,6 +62,9 @@ public class MainGame implements Screen {
     // how to play background
     private Texture htpBackground;
     private Texture rulesText;
+    private Texture arrowText;
+    private Texture arrow;
+    private Texture descriptionText;
     
     // boolean statements to switch screens
     // game screen
@@ -74,9 +77,7 @@ public class MainGame implements Screen {
     //score updater
     private int prePos;
     
-    // working on this class 
-    private AnimatedPlayer man;
-    
+    // Font
     private BitmapFont font;
     private CharSequence str;
 
@@ -122,6 +123,9 @@ public class MainGame implements Screen {
         // background
         htpBackground = new Texture("htpBackground.jpg");
         rulesText = new Texture("rulesHeader.png");
+        arrowText = new Texture("arrowText.png");
+        arrow = new Texture("arrow.png");
+        descriptionText = new Texture("descriptionText.png");
         
         // game screen images
         // back arrow image
@@ -302,13 +306,13 @@ public class MainGame implements Screen {
             
             // if player moves right
             if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-                if (p1.getX() <= 1105) {
+                if (p1.getX() <= 1140) {
                     p1.setX((int) (p1.getX() + 15));
                 }
             }
             // if player moves left
             if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-                if (p1.getX() >= 0) {
+                if (p1.getX() >= 10) {
                     p1.setX((int) (p1.getX() - 15));
                 }
             }
@@ -340,11 +344,17 @@ public class MainGame implements Screen {
             // how to play screen
         if (gameScreen == false && htpScreen == true && startScreen == false) {
             // background
-            batch.draw(htpBackground, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+            batch.draw(htpBackground, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight() + 15);
             // draw back arrow
             batch.draw(back, 10, 850, 75, 32);
             // draw rules header
             batch.draw(rulesText, 300, 690, 600, 200);
+            // arrow header
+            batch.draw(arrowText, Gdx.graphics.getWidth()/2 - 150, 600, 300, 75);
+            // arrows
+            batch.draw(arrow, Gdx.graphics.getWidth()/2 - 113, 440, 225, 150);
+            // description header
+            batch.draw(descriptionText, Gdx.graphics.getWidth()/2 - 100, 350, 200, 75);
 
             // info instructions text
         }       
@@ -352,8 +362,8 @@ public class MainGame implements Screen {
 
         }
         
+    // add a revival method
     
-
     //returns position array
     public int[] getSpot() {
         return this.spot;
