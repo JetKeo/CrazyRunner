@@ -239,6 +239,7 @@ public class MainGame implements Screen {
                 startScreen = false;
             }
            
+        // start screen
         if (gameScreen == false && htpScreen == false && startScreen == true) {
 
             // draw homepage background
