@@ -12,21 +12,27 @@ import java.util.Random;
 
 /**
  *
- * @author sheza
+ * @author Shezar Khan, Anthony Peragine, Jet Keonakhone 
+ * Tree is a subclass of Objects
  */
-
 public class Tree extends Objects {
+
+    // import image
     private Texture tree;
 
-    public Tree(int x,int width, int height) {
+    public Tree(int x, int width, int height) {
+        // width, height and x remain the same
         super(x, width, height);
+        // texture only exclusion
         tree = new Texture("tree.png");
     }
 
-    public Texture getObjectImg(){
+    // return texture
+    public Texture getObjectImg() {
         return this.tree;
     }
 
+    // dispose of heavy objects
     void dispose() {
         tree.dispose();
     }

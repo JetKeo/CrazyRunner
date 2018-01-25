@@ -9,26 +9,28 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+/**
+ *
+ * @author Shezar Khan, Anthony Peragine, Jet Keonakhone
+ *
+ */
 public class CrazyRunner extends Game {
 
     // instance variables
     private SpriteBatch batch;
     private Music music;
-    private boolean setGameScreen;
-    
 
     @Override
     public void create() {
 
         // initialize variables
-        this.setGameScreen = false;     
-        batch = new SpriteBatch();     
+        batch = new SpriteBatch();
         // import sound
         Music music = Gdx.audio.newMusic(Gdx.files.internal("sound.mp3"));
         // play sound
-        music.play();         
+        music.play();
         // set screen to be used
-        MainGame gameScreen = new MainGame(this);   
+        MainGame gameScreen = new MainGame(this);
         // turn on th main game screen
         this.setScreen(gameScreen);
     }
@@ -46,8 +48,4 @@ public class CrazyRunner extends Game {
     public SpriteBatch getBatch() {
         return batch;
     }
-    
-    
-    }
-
-
+}

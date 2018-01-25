@@ -16,7 +16,8 @@ import java.awt.Font;
 
 /**
  *
- * @author khans4349
+ * @author Shezar Khan, Anthony Peragine, Jet Keonakhone
+ * 
  */
 public class MainGame implements Screen {
 
@@ -263,9 +264,6 @@ public class MainGame implements Screen {
             int mouseX = Gdx.input.getX();
             int mouseY = Gdx.input.getY();
 
-            System.out.println("x: " + mouseX);
-            System.out.println("y: " + mouseY);
-
             // main page
             // how to play button
             if (mouseX >= 10 && mouseX <= 190 && startScreen == true) {
@@ -306,7 +304,6 @@ public class MainGame implements Screen {
 
         // start screen
         if (gameScreen == false && htpScreen == false && startScreen == true) {
-
             // draw homepage background
             batch.draw(main, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
             // draw rules button
@@ -334,20 +331,7 @@ public class MainGame implements Screen {
                         for (int x = 0; x < 6; x++) {
                             batch.draw(test[0].getObjectImg(), ary1[x].getX(), this.y, ary1[x].getWidth(), ary1[x].getLength());
                         }
-                    }
-                    
-//                    for(int z = 0; z < 6; z++){
-//                        if (this.y == p1.getY()) {
-//                        if (p1.getX() <= ary1[z].getX() + 60 && p1.getX() >= ary1[z].getX()) {
-//                            death = true;
-//                        } else {
-//                            death = false;
-//                        }
-//                    }
-//                    }
-//                    
-                    
-                    
+                    }                                 
                     this.y = this.y + 60;
 
                 } else if (spot[i] == 2) {
@@ -432,30 +416,6 @@ public class MainGame implements Screen {
             //draw back button
             batch.draw(back, 10, 850, 75, 32);
 
-//            // if player moves up + implementing screen boundaries
-//            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-//                if (player.getY() != 900) {
-//                    player.setY(player.getY() + 3);
-//                }
-//            }
-//            // if player moves down
-//            if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-//                if (player.getY() != 0) {
-//                    player.setY(player.getY() - 3);
-//                }
-//            }
-//            // if player moves right
-//            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-//                if (player.getX() <= 1139) {
-//                    player.setX(player.getX() + 3);
-//                }
-//            }
-//            // if player moves left
-//            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-//                if (player.getX() != 0) {
-//                    player.setX(player.getX() - 3);
-//                }
-//            }
             // if player moves right
             if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && death == false) {
                 if (p1.getX() <= 1140) {
@@ -482,12 +442,6 @@ public class MainGame implements Screen {
 
         }
 
-        //regenerates terrain to continue game
-//            if (player.getY() > 840) {
-//                generate();
-//                player.resetY();
-//                prePos = 0;
-//            }
         if (p1.getY() > 840) {
             generate();
             generateTree();

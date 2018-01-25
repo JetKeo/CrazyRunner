@@ -18,12 +18,11 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  *
- * @author shezar
+ * @author Shezar Khan, Anthony Peragine, Jet Keonakhone
  */
 public class AnimatedPlayer {
 
     // player location variables
-
     private float x;
     private float y;
     // player movement variables
@@ -41,33 +40,23 @@ public class AnimatedPlayer {
     private Animation<TextureRegion> run;
     private Animation<TextureRegion> runD;
 
-    private Animation<TextureRegion> runR;
-    private Animation<TextureRegion> runL;
-
+//    private Animation<TextureRegion> runR;
+//    private Animation<TextureRegion> runL;
     // pictures when standing still
     private TextureRegion stand;
     private TextureRegion standD;
 
-    private TextureRegion standR;
-    private TextureRegion standL;
-
+//    private TextureRegion standR;
+//    private TextureRegion standL;
     // texture atlas that will help load in the images from the big image
     // this was created from running the texture packer (in Desktop Launcher)
     private TextureAtlas atlas;
-    
+
 //    // for horizontal animations
 //    private TextureAtlas atlas2;
-
     // set speed of player
     private int speed;
-    
-//    // prevent render erro
-//    private boolean vertical;
-//    private boolean horizontal;
-    
-    // determine death
-    
-    
+
     // constructor - we need to know where the player starts
     public AnimatedPlayer(float x, float y) {
         // sets the income position
@@ -83,16 +72,9 @@ public class AnimatedPlayer {
 
         // players speed
         this.speed = 15;
-             
-//        // prevent render error
-//        this.vertical = true;
-//        this.horizontal = false;
 
         // load in the texture atlast to start finding pictures
         this.atlas = new TextureAtlas("packed/man.atlas");
-        
-//        // second atlas
-//        this.atlas2 = new TextureAtlas("packed2/man2.atlas");
 
         // finding the standing picture and load it in
         this.stand = atlas.findRegion("stand");
@@ -105,7 +87,6 @@ public class AnimatedPlayer {
         // the atlas has an index from each picture to order them correctly
         // this was done by naming the pictures in a certain way (run_1, run_2, etc.)
         // load in picture from atlas going up
-        
         // create up animation
         run = new Animation(1f / 20f, atlas.findRegions("run"));
 
@@ -120,12 +101,15 @@ public class AnimatedPlayer {
 
         // start off by facing up
         this.facingDown = false;
-        
+
+        // ATTEMPTED TO INCORPORATE HORIZONTAL ANIMATIONS ALONGSIDE VERTICAL ANIMATIONS,--------------------------------------------------------------------------- 
+        // HOWEVER I FAILED SO I COMMENTED OUT (Most of the code)SHOWING I TRIED-----------------------------------------------------------------------------------
 //        // start by facing up
 //        this.facingRight = false;
-
 //        // HORIZONTAL ANIMATION
-//        
+//      
+//        // second atlas
+//        this.atlas2 = new TextureAtlas("packed2/man2.atlas");  
 //        // load in texture facing right
 //        this.standR = atlas2.findRegion("standR");
 //        // load in texture facing left
@@ -144,7 +128,6 @@ public class AnimatedPlayer {
 //        runL = new Animation(1f / 10f, runLFrames);
 //        
 //        
-
         // create a run animation facing right
         // load in picture from atlas going right
 //        Array<AtlasRegion> runRFrames = atlas.findRegions("run");
@@ -153,7 +136,6 @@ public class AnimatedPlayer {
 //            // keep same position
 //            runRFrames.get(i).flip(false, false);
 //        }
-
 //        runR = new Animation(1f / 10f, atlas.findRegions("run_10"));
 //        runR = new Animation(1f / 10f, atlas.findRegions("run_11"));
 //        runR = new Animation(1f / 10f, atlas.findRegions("run_12"));
@@ -163,10 +145,8 @@ public class AnimatedPlayer {
 //        runR = new Animation(1f / 10f, atlas.findRegions("run_16"));
 //        runR = new Animation(1f / 10f, atlas.findRegions("run_17"));
 //        runR = new Animation(1f / 10f, atlas.findRegions("run_18"));
-
         // create right animation
         // runR = new Animation(1f / 10f, runRFrames);
-
         // create a run animation facing left
         // load in picture from atlas
 //        Array<AtlasRegion> runLFrames = atlas.findRegions("run");
@@ -177,7 +157,6 @@ public class AnimatedPlayer {
 //        }
 //        // create left animation
 //        runL = new Animation(1f / 10f, runLFrames);
-        
 //        runL = new Animation(1f / 10f, atlas.findRegions("run_10"));
 //        runL = new Animation(1f / 10f, atlas.findRegions("run_11"));
 //        runL = new Animation(1f / 10f, atlas.findRegions("run_12"));
@@ -187,14 +166,15 @@ public class AnimatedPlayer {
 //        runL = new Animation(1f / 10f, atlas.findRegions("run_16"));
 //        runL = new Animation(1f / 10f, atlas.findRegions("run_17"));
 //        runL = new Animation(1f / 10f, atlas.findRegions("run_18"));
-        
-
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------
     }
 
+    // get float of x
     public float getX() {
         return x;
     }
 
+    // get float of y
     public float getY() {
         return y;
     }
@@ -203,41 +183,35 @@ public class AnimatedPlayer {
 
         // if I'm pressing up
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            // set the x displacement to start moving right
+            // set the x displacement to start moving up
             this.dy = speed;
             this.dx = 0;
             // increase the animation timer
             this.elapsed = this.elapsed + deltaTime;
             // set boolean to face down
             this.facingDown = false;
-//            this.facingRight = false;
-//            // set vertical to true
-//            vertical = true;
-//            horizontal = false;
-            
+
+            // if im pressing down and persons y position is greater than zero
         } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN) && this.y >= 0) {
-            // set the x displacement to start moving left
+            // set the x displacement to start moving down
             this.dy = -speed;
             this.dx = 0;
             // increase the animation timer
             this.elapsed = this.elapsed + deltaTime;
             // im facing down
             this.facingDown = true;
-//            this.facingRight = false;
-//            vertical = true;
-//            horizontal = false;
-            
+
         } else {
             // stop the y displacement
             this.dy = 0;
             // no more animation so reset the timer
             this.elapsed = 0;
-//            vertical = true;
-//            horizontal = false;
         }
         // update y position
         this.y = this.y + this.dy;
 
+        // ATTEMPTED TO INCORPORATE HORIZONTAL ANIMATIONS ALONGSIDE VERTICAL ANIMATIONS,--------------------------------------------------------------------------- 
+        // HOWEVER I FAILED SO I COMMENTED OUT SHOWING I TRIED-----------------------------------------------------------------------------------------------------
 //        // if I'm pressing right
 //        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && this.x <= 1105) {
 //            // set the x displacement to start moving right
@@ -270,22 +244,20 @@ public class AnimatedPlayer {
 ////            vertical = false;
 //        }
         // this.x = this.x + this.dx;
-
+        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------
     }
 
     public void render(SpriteBatch batch) {
         // standing
-       
         if (this.dy == 0) {
-            // pic the correct picture for left or right
+            // pic the correct picture for UP or DOWN
             if (facingDown == true) {
                 batch.draw(standD, x, y, 40, 40);
-            } else {               
+            } else {
                 batch.draw(stand, x, y, 40, 40);
             }
-            
-       
-            
+
+            // SAME THING ------------------------------------------------------------------------------------------------------------------------------------------------
 //            // horizontal animation
 //        }else if(this.dx == 0 && horizontal == true){
 //            if(facingRight == true){
@@ -293,34 +265,42 @@ public class AnimatedPlayer {
 //            }else if(facingRight == false){            
 //                batch.draw(standL, x, y);
 //            }
-            
-        }else if (this.dy > 0) {
+            // -----------------------------------------------------------------------------------------------------------------------------------------------------------
+            // set up or down movement during elapsed time
+        } else if (this.dy > 0) {
             batch.draw(run.getKeyFrame(elapsed, true), x, y, 40, 40);
             // Down animation
         } else if (this.dy < 0) {
             batch.draw(runD.getKeyFrame(elapsed, true), x, y, 40, 40);
         }
-            // right animation
+
+        // SAME THING ------------------------------------------------------------------------------------------------------------------------------------------------
+        // right animation
 //        } else if (this.dx > 0&& vertical == false && horizontal == true) {
 //            batch.draw(runR.getKeyFrame(elapsed, true), x, y);
 //            // left animation
 //        } else if (this.dx < 0&& vertical == false && horizontal == true) {
 //            batch.draw(runL.getKeyFrame(elapsed, true), x, y);
 //        }
+        // -----------------------------------------------------------------------------------------------------------------------------------------------------------
     }
 
+    // resets y position
     public void resetY() {
         this.y = 0;
     }
-    
-    public void resetX(){
-        this.x = Gdx.graphics.getWidth()/2 - (55/2);
+
+    // resets x position
+    public void resetX() {
+        this.x = Gdx.graphics.getWidth() / 2 - (55 / 2);
     }
 
+    // set the value of x coordinate
     public void setX(int x) {
         this.x = x;
     }
 
+    // sets the value of y coordinate
     public void setY(int y) {
         this.y = y;
     }

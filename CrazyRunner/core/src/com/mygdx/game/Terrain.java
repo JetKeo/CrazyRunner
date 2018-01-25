@@ -10,33 +10,40 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  *
- * @author peraa0837
+ * @author Shezar Khan, Anthony Peragine, Jet Keonakhone 
+ * Abstract class for various terrains
  */
-
 public abstract class Terrain {
+
+    // instance variables
     private int xsize;
     private int ysize;
     private int y;
     private int x;
 
-    public Terrain(int xsize, int ysize){
+    public Terrain(int xsize, int ysize) {
+        // constructor
         this.xsize = xsize;
         this.ysize = ysize;
-       }
-   
-    public int getXSize(){
+    }
+
+    // return size of x
+    public int getXSize() {
         return this.xsize;
     }
-    
-    public int getYSize(){
+
+    // return size of y
+    public int getYSize() {
         return this.ysize;
     }
-    
-    public int getY(){
+
+    // return y position
+    public int getY() {
         return this.y;
     }
-    
-    private int getX(){
+
+    // return x position
+    private int getX() {
         return this.x;
     }
 }

@@ -9,36 +9,38 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
  *
- * @author jetkeo
-
+ * @author Shezar Khan, Anthony Peragine, Jet Keonakhone 
+ * Abstract class for objects
  */
-
 public abstract class Objects {
 
+    // instance variables
     private int width;
     private int length;
     private int x;
-    
 
-    public Objects(int x, int width, int length){
-
+    public Objects(int x, int width, int length) {
+        // constructor
         this.x = x;
         this.width = width;
         this.length = length;
 
     }
 
-    public int getWidth(){
+    // get the width
+    public int getWidth() {
         return width;
 
     }
 
-    public int getLength(){
+    // get the length
+    public int getLength() {
         return length;
 
     }
 
-    public int getX(){
+    // get X
+    public int getX() {
         return x;
     }
 }
