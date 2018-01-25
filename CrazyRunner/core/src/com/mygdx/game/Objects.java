@@ -18,6 +18,7 @@ public abstract class Objects {
     private int width;
     private int length;
     private int x;
+    
 
     public Objects(int x, int width, int length){
 

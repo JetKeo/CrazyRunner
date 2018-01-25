@@ -64,7 +64,10 @@ public class AnimatedPlayer {
 //    // prevent render erro
 //    private boolean vertical;
 //    private boolean horizontal;
-
+    
+    // determine death
+    
+    
     // constructor - we need to know where the player starts
     public AnimatedPlayer(float x, float y) {
         // sets the income position
@@ -80,7 +83,7 @@ public class AnimatedPlayer {
 
         // players speed
         this.speed = 15;
-        
+             
 //        // prevent render error
 //        this.vertical = true;
 //        this.horizontal = false;
@@ -276,9 +279,9 @@ public class AnimatedPlayer {
         if (this.dy == 0) {
             // pic the correct picture for left or right
             if (facingDown == true) {
-                batch.draw(standD, x, y, 55, 55);
+                batch.draw(standD, x, y, 40, 40);
             } else {               
-                batch.draw(stand, x, y, 55, 55);
+                batch.draw(stand, x, y, 40, 40);
             }
             
        
@@ -292,10 +295,10 @@ public class AnimatedPlayer {
 //            }
             
         }else if (this.dy > 0) {
-            batch.draw(run.getKeyFrame(elapsed, true), x, y, 55, 55);
+            batch.draw(run.getKeyFrame(elapsed, true), x, y, 40, 40);
             // Down animation
         } else if (this.dy < 0) {
-            batch.draw(runD.getKeyFrame(elapsed, true), x, y, 55, 55);
+            batch.draw(runD.getKeyFrame(elapsed, true), x, y, 40, 40);
         }
             // right animation
 //        } else if (this.dx > 0&& vertical == false && horizontal == true) {
