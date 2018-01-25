@@ -134,7 +134,7 @@ public class MainGame implements Screen {
         // player
         // player = new Player();
         score = 0;
-        p1 = new AnimatedPlayer(Gdx.graphics.getWidth() / 2 - (55 / 2), 900);
+        p1 = new AnimatedPlayer(Gdx.graphics.getWidth() / 2 - (40 / 2), 900);
 
         //score updater at 0
         prePos = 0;
@@ -420,13 +420,13 @@ public class MainGame implements Screen {
 
             // if player moves right
             if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && death == false) {
-                if (p1.getX() <= 1140) {
+                if (p1.getX() <= 1145) {
                     p1.setX((int) (p1.getX() + 15));
                 }
             }
             // if player moves left
             if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && death == false) {
-                if (p1.getX() >= 10) {
+                if (p1.getX() >= 15) {
                     p1.setX((int) (p1.getX() - 15));
                 }
             }
