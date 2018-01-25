@@ -92,6 +92,7 @@ public class MainGame implements Screen {
     private Texture arrowText;
     private Texture arrow;
     private Texture descriptionText;
+    private Texture detail;
 
     // boolean statements to switch screens
     // game screen
@@ -176,6 +177,7 @@ public class MainGame implements Screen {
         arrowText = new Texture("arrowText.png");
         arrow = new Texture("arrow.png");
         descriptionText = new Texture("descriptionText.png");
+        detail = new Texture("details.png");
 
         // game screen images
         // back arrow image
@@ -434,6 +436,7 @@ public class MainGame implements Screen {
                 p1.resetY();
                 score = 0;
                 death = false;
+                speedO = 3.0;
             }
 
             //player
@@ -468,8 +471,9 @@ public class MainGame implements Screen {
             batch.draw(arrow, Gdx.graphics.getWidth() / 2 - 113, 440, 225, 150);
             // description header
             batch.draw(descriptionText, Gdx.graphics.getWidth() / 2 - 100, 350, 200, 75);
+            // instructions text
+            batch.draw(detail, Gdx.graphics.getWidth()/2 - 400, 225, 800, 120);
 
-            // info instructions text
         }
         batch.end();
 
